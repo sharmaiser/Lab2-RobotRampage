@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Gun : MonoBehaviour
 {
     public float fireRate;
     protected float lastFireTime;
