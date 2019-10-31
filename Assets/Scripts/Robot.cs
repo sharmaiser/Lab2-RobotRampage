@@ -50,4 +50,26 @@ public class Robot : MonoBehaviour
         {
              Debug.Log("Fire");
         }
+
+    // 1
+    public void TakeDamage(int amount)
+    {
+        if (isDead)
+        {
+            return;
+        }
+        health -= amount;
+        if (health <= 0)
+        {
+            isDead = true;
+            robot.Play("Die");
+            StartCoroutine("DestroyRobot");
+        }
+    }
+    // 2
+    IEnumerator DestroyRobot()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Destroy(gameObject);
+    }
 }

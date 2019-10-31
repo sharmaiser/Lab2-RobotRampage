@@ -9,6 +9,13 @@ public class Gun : MonoBehaviour
     public Ammo ammo;
     public AudioClip liveFire;
     public AudioClip dryFire;
+
+    public float zoomFactor;
+    public int range;
+    public int damage;
+    private float zoomFOV;
+    private float zoomSpeed = 6;
+
     // Start is called before the first frame update
     void Start()
     {
