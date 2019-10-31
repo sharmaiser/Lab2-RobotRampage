@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
+    public int type;
     // Start is called before the first frame update
-    void Start()
+    void OnTriggerEnter(Collider collider)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collider.gameObject.GetComponent<Player>() != null
+        && collider.gameObject.tag == "Player")
+        {
+            collider.gameObject.GetComponent<Player>().PickUpItem(type);
+            Destroy(gameObject);
+        }
     }
 }
