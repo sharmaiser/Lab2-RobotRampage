@@ -14,6 +14,12 @@ public class Robot : MonoBehaviour
     private Transform player;
     private float timeLastFired;
     private bool isDead;
+    [SerializeField]
+    private AudioClip deathSound;
+    [SerializeField]
+    private AudioClip fireSound;
+    [SerializeField]
+    private AudioClip weakHitSound;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +55,7 @@ public class Robot : MonoBehaviour
         private void fire()
         {
              Debug.Log("Fire");
+             GetComponent<AudioSource>().PlayOneShot(fireSound);
         }
 
     // 1
@@ -64,6 +71,18 @@ public class Robot : MonoBehaviour
             isDead = true;
             robot.Play("Die");
             StartCoroutine("DestroyRobot");
+        }
+
+        if (health <= 0)
+        {
+            isDead = true;
+            robot.Play("Die");
+            StartCoroutine("DestroyRobot");
+            GetComponent<AudioSource>().PlayOneShot(deathSound);
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(weakHitSound);
         }
     }
     // 2
