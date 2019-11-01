@@ -31,17 +31,33 @@
 using UnityEngine;
 using System.Collections;
 
-public class AssaultRifle : Gun
+public class RobotSpawn : MonoBehaviour
 {
 
-	override protected void Update()
+	[SerializeField]
+	GameObject[] robots;
+
+	private int timesSpawned;
+	private int healthBonus = 0;
+
+	public void SpawnRobot()
 	{
-		base.Update();
-		// Automatic Fire
-		if (Input.GetMouseButton(0) && Time.time - lastFireTime > fireRate)
-		{
-			lastFireTime = Time.time;
-			Fire();
-		}
+		timesSpawned++;
+		healthBonus += 1 * timesSpawned;
+		GameObject robot = Instantiate(robots[Random.Range(0, robots.Length)]);
+		robot.transform.position = transform.position;
+		robot.GetComponent<Robot>().health += healthBonus;
+	}
+
+	// Use this for initialization
+	void Start()
+	{
+
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
 	}
 }
