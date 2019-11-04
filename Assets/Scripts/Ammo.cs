@@ -66,7 +66,8 @@ public class Ammo : MonoBehaviour
 		}
 
 		tagToAmmo[tag]--;
-	}
+        gameUI.SetAmmoText(tagToAmmo[tag]);
+    }
 
 	// Use this for initialization
 	void Start()
